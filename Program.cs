@@ -4,7 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(string.Join(", ", args));
         int day = 2;
         if (args.Length > 0)
             int.TryParse(args[0], out day);
