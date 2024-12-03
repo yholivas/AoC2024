@@ -1,6 +1,6 @@
 namespace AoC2024.Day2;
 
-class Day2
+class Day2 : IRunnable
 {
     public Day2()
     {
@@ -70,4 +70,6 @@ class Day2
 
         return result;
     }
+
+    public int Run2(string file) {return 0;}
 }

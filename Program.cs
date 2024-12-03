@@ -15,10 +15,15 @@ class Program
         Console.WriteLine($"Running day {day}");
 
         int result = 0;
+        IRunnable prog;
         switch (day) {
             case 2:
-                var prog = new Day2.Day2();
+                prog = new Day2.Day2();
                 result = prog.Run(file); 
+                break;
+            case 3:
+                prog = new Day3.Day3();
+                result = prog.Run(file);
                 break;
             default:
                 break;
