@@ -9,6 +9,7 @@ class Program
         Console.WriteLine($"Running day {arguments.Day}");
 
         IRunnable prog = arguments.Day switch {
+            1 => new Day1.Day1(),
             2 => new Day2.Day2(),
             3 => new Day3.Day3(),
             _ => throw new ArgumentException("Invalid day specified")
@@ -43,7 +44,7 @@ class Program
     internal class Arguments
     {
         public string File = "input";
-        public int Day = 2;
+        public int Day = 1;
         public bool IsRun2 = false;
     }
 }
