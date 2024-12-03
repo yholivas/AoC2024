@@ -4,33 +4,46 @@ class Program
 {
     static void Main(string[] args)
     {
-        int day = 2;
-        if (args.Length > 0)
-            int.TryParse(args[0], out day);
+        Arguments arguments = ParseArgs(args);
 
-        string file = "input";
-        if (args.Length > 1)
-            file = args[1];
+        Console.WriteLine($"Running day {arguments.Day}");
 
-        Console.WriteLine($"Running day {day}");
+        IRunnable prog = arguments.Day switch {
+            2 => new Day2.Day2(),
+            3 => new Day3.Day3(),
+            _ => throw new ArgumentException("Invalid day specified")
+        };
 
-        int result = 0;
-        IRunnable prog;
-        switch (day) {
-            case 2:
-                prog = new Day2.Day2();
-                result = prog.Run(file); 
-                break;
-            case 3:
-                prog = new Day3.Day3();
-                result = prog.Run(file);
-                break;
-            default:
-                break;
-        }
+        int result = arguments.IsRun2 ? prog.Run2(arguments.File) : prog.Run(arguments.File);
 
         Console.WriteLine($"Result: {result}");
 
         Console.WriteLine("Have a nice day 🙂");
+    }
+
+    private static Arguments ParseArgs(string[] args)
+    {
+        Arguments arguments = new();
+        int i = 0;
+        while (i < args.Length) {
+            if (args[i] == "--file")
+                arguments.File = args[++i];
+            else if (args[i] == "--day") {
+                int.TryParse(args[++i], out int day);
+                arguments.Day = day;
+            } else if (args[i] == "-2")
+                arguments.IsRun2 = true;
+
+            i++;
+        }
+
+        return arguments;
+    }
+
+    internal class Arguments
+    {
+        public string File = "input";
+        public int Day = 2;
+        public bool IsRun2 = false;
     }
 }
