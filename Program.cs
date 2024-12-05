@@ -12,6 +12,7 @@ class Program
             1 => new Day1.Day1(),
             2 => new Day2.Day2(),
             3 => new Day3.Day3(),
+            4 => new Day4.Day4(),
             _ => throw new ArgumentException("Invalid day specified")
         };
 
